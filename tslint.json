@@ -1,0 +1,111 @@
+{
+  "extends": [
+    "tslint-react",
+    "tslint:all",
+    "tslint-eslint-rules",
+    "tslint-config-standard",
+    "tslint-microsoft-contrib",
+    "tslint-config-airbnb"
+  ],
+  "rules": {
+    "align": [true, "parameters", "statements", "members"],
+    "completed-docs": false,
+    "export-name": false,
+    "file-name-casing": false,
+    "function-name": false,
+    "import-name": false,
+    "insecure-random": false,
+    "interface-name": false,
+    "jsx-boolean-value": [true, "never"],
+    "jsx-curly-spacing": [true, "always"],
+    "jsx-no-lambda": false,
+    "jsx-no-multiline-js": false,
+    "match-default-export-name": false,
+    "max-classes-per-file": false,
+    "max-line-length": false,
+    "member-access": false,
+    "member-ordering": false,
+    "missing-jsdoc": false,
+    "newline-per-chained-call": false,
+    "no-console": [true, "log", "debug", "trace", "dir", "table"],
+    "no-default-export": false,
+    "no-implicit-dependencies": false,
+    "no-import-side-effect": false,
+    "no-irregular-whitespace": true,
+    "no-magic-numbers": false,
+    "no-null-keyword": false,
+    "no-relative-imports": false,
+    "no-reserved-keywords": false,
+    "no-single-line-block-comment": false,
+    "no-submodule-imports": false,
+    "no-suspicious-comment": false,
+    "no-unsafe-any": false,
+    "no-use-before-declare": false,
+    "no-void-expression": [true, "ignore-arrow-function-shorthand"],
+    "object-literal-sort-keys": false,
+    "only-arrow-functions": false,
+    "ordered-imports": false,
+    "prefer-function-over-method": false,
+    "react-this-binding-issue": [true, { "allow-anonymous-listeners": true }],
+    "react-unused-props-and-state": [ true, { "props-interface-regex": "Props$", "state-interface-regex": "State$" }],
+    "restrict-plus-operands": false,
+    "strict-boolean-expressions": false,
+    "switch-default": false,
+    "switch-final-break": [true, "always"],
+    "ter-arrow-body-style": [true, "as-needed"],
+    "typedef": false,
+    "underscore-consistent-invocation": false,
+    "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
+    "ter-arrow-parens": [true, "as-needed", { "requireForBlockBody": true }],
+    "ter-arrow-spacing": [true],
+    "ter-prefer-arrow-callback": [true, {
+      "allowNamedFunctions": true,
+      "allowUnboundThis": false
+    }],
+    "ter-indent": [true, 2, {
+      "SwitchCase": 1,
+      "outerIIFEBody": 0,
+      "MemberExpression": 1,
+      "FunctionDeclaration": { "body": 1, "parameters": 1 },
+      "FunctionExpression": { "body": 1, "parameters": 1 },
+      "CallExpression": { "arguments": 1 }
+    }],
+    "ter-max-len": [true, 180, {
+      "ignoreUrls": true
+    }],
+    "no-multi-spaces": [true, {
+      "exceptions": {
+        "PropertyAssignment": false
+      }
+    }],
+    "object-curly-spacing": [true, "always"],
+    "space-in-parens": [true, "never"],
+    "array-bracket-spacing": [
+      true,
+      "never",
+      {
+        "singleValue": true,
+        "objectsInArrays": true,
+        "arraysInArrays": true
+      }
+    ],
+    "block-spacing": [true, "always"],
+    "brace-style": [true, "1tbs", { "allowSingleLine": true }],
+    "handle-callback-err": [true, "err"],
+    "no-constant-condition": true,
+    "no-control-regex": true,
+    "no-duplicate-case": true,
+    "no-empty-character-class": true,
+    "no-ex-assign": true,
+    "no-extra-boolean-cast": true,
+    "no-extra-semi": true,
+    "no-inner-declarations": [true, "both"],
+    "no-invalid-regexp": true,
+    "no-regex-spaces": true,
+    "no-sparse-arrays": true,
+    "no-unexpected-multiline": true,
+    "use-isnan": true,
+    "valid-jsdoc": true,
+    "valid-typeof": true
+  }
+}

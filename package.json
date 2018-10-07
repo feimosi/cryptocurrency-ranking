@@ -2,24 +2,97 @@
   "name": "povio",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-scripts": "2.0.4"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "cross-env NODE_PATH=src/ react-app-rewired start",
+    "build": "cross-env NODE_PATH=src/ react-app-rewired build",
+    "build-dev": "cross-env NODE_PATH=src/ REACT_APP_NODE_ENV=development react-app-rewired build",
+    "build-staging": "cross-env NODE_PATH=src/ REACT_APP_NODE_ENV=staging react-app-rewired build",
+    "build-production": "cross-env NODE_PATH=src/ REACT_APP_NODE_ENV=production react-app-rewired build",
+    "test": "cross-env NODE_PATH=src/ react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject",
+    "tsc": "tsc --watch --noEmit --project .",
+    "lint": "tslint --project .",
+    "generator": "plop"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "immer": "^1.7.2",
+    "intersection-observer": "^0.5.0",
+    "lodash": "^4.17.11",
+    "moment": "^2.22.2",
+    "normalize.css": "^8.0.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.5.2",
+    "react-app-rewire-postcss": "^3.0.0",
+    "react-dom": "^16.5.2",
+    "react-helmet": "^5.2.0",
+    "react-loadable": "^5.5.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-router-redux": "^4.0.8",
+    "react-scripts": "^2.0.4",
+    "redux": "^4.0.0",
+    "redux-persist": "^5.10.0",
+    "redux-saga": "^0.16.1",
+    "reselect": "^4.0.0",
+    "typesafe-actions": "^2.0.4",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.1.0",
+    "@types/classnames": "^2.2.6",
+    "@types/jest": "^23.3.3",
+    "@types/lodash": "^4.14.116",
+    "@types/react": "^16.4.15",
+    "@types/react-dom": "^16.0.8",
+    "@types/react-loadable": "^5.4.1",
+    "@types/react-redux": "^6.0.9",
+    "@types/react-router": "^4.0.31",
+    "@types/react-router-dom": "^4.3.1",
+    "@types/webpack-env": "^1.13.6",
+    "caniuse-lite": "^1.0.30000889",
+    "cross-env": "^5.2.0",
+    "husky": "^1.1.1",
+    "inquirer-fuzzy-path": "^1.0.0",
+    "plop": "^2.1.0",
+    "postcss-color-mod-function": "^3.0.3",
+    "postcss-conditionals": "^2.1.0",
+    "postcss-css-variables": "^0.10.0",
+    "postcss-each": "^0.10.0",
+    "postcss-mixins": "^6.2.0",
+    "postcss-nested": "^4.1.0",
+    "postcss-preset-env": "^6.0.10",
+    "react-app-rewire-hot-loader": "^1.0.3",
+    "react-app-rewire-typescript-babel-preset": "^3.0.0",
+    "react-app-rewired": "^2.0.0",
+    "react-hot-loader": "^4.3.11",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.0",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-microsoft-contrib": "^5.2.1",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.1.1",
+    "why-did-you-update": "^0.1.1"
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">1%",
+      "last 4 versions",
+      "Firefox ESR",
+      "not op_mini all",
+      "not ie < 11",
+      "not dead"
+    ]
+  }
 }

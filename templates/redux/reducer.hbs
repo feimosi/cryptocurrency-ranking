@@ -1,0 +1,28 @@
+import { Reducer } from 'redux';
+import { ActionType, getType } from 'typesafe-actions';
+
+import * as actions from './{{ name }}.actions.js';
+
+export type {{ titleCase name }}Action = ActionType<typeof actions>;
+
+export interface StateType {
+  readonly isLoading: boolean;
+}
+
+const initialState: StateType = {
+  isLoading: false,
+};
+
+const {{ name }}Reducer: Reducer<StateType> = (state = initialState, action: {{ titleCase name }}Action) => {
+  switch (action.type) {
+    case getType(actions.xxxSuccess): {
+      return {
+        ...state,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+export default {{ name }}Reducer;

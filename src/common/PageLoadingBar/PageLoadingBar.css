@@ -1,0 +1,31 @@
+.PageLoadingBar {
+  height: 6px;
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+  background-color: #fafafa;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 10000;
+
+  &:before{
+    display: block;
+    position: absolute;
+    content: "";
+    left: -200px;
+    width: 200px;
+    height: 4px;
+    background-color: #1200FF;
+    animation: PageLoadingBar__animation 2s linear infinite;
+  }
+}
+
+@keyframes PageLoadingBar__animation {
+    from {left: -200px; width: 200px;}
+    50% {width: 30%;}
+    70% {width: 70%;}
+    80% {left: 50%;}
+    95% {left: 120%;}
+    to {left: 100%; width: 30%;}
+}

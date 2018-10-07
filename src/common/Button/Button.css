@@ -1,0 +1,132 @@
+@define-mixin button-variant
+    $fontColor, $background, $border,
+    $fontColorDisabled, $backgroundDisabled, $borderDisabled {
+  background-color: $background;
+  border-color: $border;
+  color: $fontColor;
+  font-family: 'Open Sans', Helvetica, sans-serif;
+
+  &:hover {
+    @if $border == transparent {
+      border-color: none;
+    } @else {
+      border-color: color-mod($border shade(10%));
+    }
+
+    background-color: color-mod($background shade(10%));
+    color: $fontColor;
+    text-decoration: none;
+  }
+
+  &:focus {
+    @if $border == transparent {
+      border-color: none;
+    } @else {
+      border-color: color-mod($border shade(25%));
+    }
+
+    background-color: color-mod($background shade(20%));
+    color: $fontColor;
+    text-decoration: none;
+    outline: none;
+  }
+
+  &--disabled,
+  &:disabled {
+    background-color: $backgroundDisabled;
+    border-color: $borderDisabled;
+    color: $fontColorDisabled;
+    filter: grayscale(1);
+  }
+}
+
+.Button {
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 15px 23px;
+  position: relative;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 20px;
+  cursor: pointer;
+  text-align: center;
+  transition:
+    background-color .2s ease-out,
+    color .2s ease-out;
+  border-radius: 25.5px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &--disabled,
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &--default {
+    @mixin button-variant
+      #222, white, transparent,
+      #484848, #ddd, transparent;
+    box-shadow: 0 4px 10px 0 rgba(20,9,62,0.09);
+  }
+
+  &--primary {
+    @mixin button-variant
+      white, #1200FF, transparent,
+      #484848, #ddd, #1f86db;
+  }
+
+  &--secondary {
+    @mixin button-variant
+      #1200FF, white, #f2f2f8,
+      #484848, #ddd, transparent;
+  }
+
+  &--link {
+    border: none;
+    padding: 0;
+    background: inherit;
+    font-weight: bold;
+    font-size: inherit;
+    line-height: inherit;
+    color: #555;
+
+    &:hover {
+      color: black;
+    }
+
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  &--unstyled {
+    border: none;
+    padding: 0;
+    background: none;
+    font-size: inherit;
+    font-weight: inherit;
+    text-align: left;
+    position: static;
+    box-shadow: inherit;
+  }
+
+  &--fab {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: initial;
+  }
+
+  &__loader {
+    position: absolute;
+    right: 8px;
+    top: calc(50% - 9px);
+  }
+}

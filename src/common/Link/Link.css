@@ -1,0 +1,8 @@
+.Link {
+  text-decoration: none;
+  color: inherit;
+
+  &--disabled {
+    cursor: not-allowed;
+  }
+}

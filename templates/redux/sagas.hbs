@@ -1,0 +1,24 @@
+import { call, put, takeLatest } from 'redux-saga/effects';
+import { ActionType, getType } from 'typesafe-actions';
+
+import * as actions from './{{name}}.actions';
+
+function* xxx(action: ActionType<typeof actions.xxx>) {
+  try {
+    const response = yield call(() => new Promise(resolve =>
+      setTimeout(() => resolve({ data: [] }), 300),
+    ));
+
+    yield put(actions.xxxSuccess(response));
+  } catch (error) {
+    yield put(actions.xxxError(error));
+  }
+}
+
+export function* watchXXX() {
+  yield takeLatest(getType(actions.xxx), xxx);
+}
+
+export default [
+  watchXXX,
+];
