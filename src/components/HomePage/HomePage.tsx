@@ -6,11 +6,11 @@ import * as _ from 'lodash';
 import BaseComponent from 'common/BaseComponent';
 import * as cryptocurrenciesActions from 'state/entities/cryptocurrencies/cryptocurrencies.actions';
 import { RootState } from 'state/reducers';
-import { CryptocurrencyType } from 'types/cryptocurrency.type';
+import { Cryptocurrency } from 'types/cryptocurrency.type';
 import './HomePage.css';
 
 interface StateProps {
-  cryptocurrencies: CryptocurrencyType[];
+  cryptocurrencies: Cryptocurrency[];
 }
 
 interface DispatchProps {

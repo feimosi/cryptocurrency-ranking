@@ -1,13 +1,13 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { getType } from 'typesafe-actions';
 
-import { CryptocurrencyType } from 'types/cryptocurrency.type';
+import { Cryptocurrency } from 'types/cryptocurrency.type';
 import * as actions from './cryptocurrencies.actions';
 import * as mockedResponse from './cryptocurrencies.mockedResponse.json';
 
 function* sampleAction() {
   try {
-    const response: { data: CryptocurrencyType[] } = yield call(async () =>
+    const response: { data: Cryptocurrency[] } = yield call(async () =>
       new Promise(resolve =>
         setTimeout(() => resolve({ data: mockedResponse.data }), 300),
       ));
