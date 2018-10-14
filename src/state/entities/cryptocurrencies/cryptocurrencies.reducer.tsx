@@ -15,14 +15,15 @@ const initialState: StateType = {
   items: {},
 };
 
-// const cryptocurrenciesReducer: Reducer<StateType> = (state = initialState, action: CryptocurrenciesAction) => {
-const cryptocurrenciesReducer: Reducer<StateType, CryptocurrenciesAction> = (state = initialState, action) => produce<StateType>(state, (draft) => {
-  switch (action.type) {
-    case getType(actions.sampleAction): {
-      draft.items = {};
-      break;
+const cryptocurrenciesReducer: Reducer<StateType, CryptocurrenciesAction> =
+  (state = initialState, action) => produce<StateType>(state, (draft) => {
+    switch (action.type) {
+      case getType(actions.fetchCryptocurrenciesSuccess): {
+        draft.items = action.payload.cryptocurrencies.reduce((acc, next) => ({ ...acc, [next.id]: next }), {});
+        break;
+      }
     }
-  }
-});
+  },
+);
 
 export default cryptocurrenciesReducer;

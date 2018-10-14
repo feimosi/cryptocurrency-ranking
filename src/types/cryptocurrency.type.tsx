@@ -1,5 +1,13 @@
 export class CryptocurrencyType {
   id: number;
   name: string;
-  imageUrl: string;
+  symbol: string;
+  slug: string;
+  circulatingSupply: number;
+  totalSupply: number;
+  maxSupply: number;
+  dateAdded: Date;
+  numMarketPairs: number;
+  cmcRank: number;
+  lastUpdated: Date;
 }

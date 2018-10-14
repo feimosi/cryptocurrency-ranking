@@ -7,6 +7,9 @@
     "tslint-microsoft-contrib",
     "tslint-config-airbnb"
   ],
+  "linterOptions": {
+    "exclude": ["**/*.json"]
+  },
   "rules": {
     "align": [true, "parameters", "statements", "members"],
     "completed-docs": false,
@@ -39,6 +42,7 @@
     "no-single-line-block-comment": false,
     "no-submodule-imports": false,
     "no-suspicious-comment": false,
+    "no-unnecessary-callback-wrapper": false,
     "no-unsafe-any": false,
     "no-use-before-declare": false,
     "no-void-expression": [true, "ignore-arrow-function-shorthand"],
@@ -53,10 +57,10 @@
     "switch-default": false,
     "switch-final-break": [true, "always"],
     "ter-arrow-body-style": [true, "as-needed"],
+    "ter-arrow-parens": [true, "as-needed", { "requireForBlockBody": true }],
     "typedef": false,
     "underscore-consistent-invocation": false,
     "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
-    "ter-arrow-parens": [true, "as-needed", { "requireForBlockBody": true }],
     "ter-arrow-spacing": [true],
     "ter-prefer-arrow-callback": [true, {
       "allowNamedFunctions": true,
@@ -84,7 +88,6 @@
       true,
       "never",
       {
-        "singleValue": true,
         "objectsInArrays": true,
         "arraysInArrays": true
       }
