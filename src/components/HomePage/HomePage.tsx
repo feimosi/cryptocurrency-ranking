@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 
 import BaseComponent from 'common/BaseComponent';
 import * as cryptocurrenciesActions from 'state/entities/cryptocurrencies/cryptocurrencies.actions';
+import { getCryptocurrencies } from 'state/entities/cryptocurrencies/cryptocurrencies.selectors';
 import { RootState } from 'state/reducers';
 import { Cryptocurrency } from 'types/cryptocurrency.type';
 import './HomePage.css';
@@ -44,7 +45,7 @@ export class HomePage extends BaseComponent<Props> {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  cryptocurrencies: _.values(state.entities.cryptocurrencies.items),
+  cryptocurrencies: getCryptocurrencies(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
