@@ -8,9 +8,10 @@ import * as cryptocurrenciesActions from 'state/entities/cryptocurrencies/crypto
 import { getCryptocurrencies } from 'state/entities/cryptocurrencies/cryptocurrencies.selectors';
 import { RootState } from 'state/reducers';
 import { Cryptocurrency } from 'types/cryptocurrency.type';
-import './HomePage.css';
-import CurrenciesTable from './CurrenciesTable/CurrenciesTable';
 import { FlatCurrency } from 'types/flatCurrency.type';
+
+import CurrenciesTable from './CurrenciesTable';
+import './HomePage.css';
 
 interface StateProps {
   cryptocurrencies: Cryptocurrency[];
@@ -24,11 +25,7 @@ type Props = StateProps & DispatchProps;
 
 export class HomePage extends BaseComponent<Props> {
   componentDidMount() {
-    this.props.actions.fetchCryptocurrencies();
-  }
-
-  handleCurrencyClick = () => {
-    /* TODO: */
+    this.props.actions.fetchTopCryptocurrencies();
   }
 
   render() {
@@ -42,7 +39,6 @@ export class HomePage extends BaseComponent<Props> {
           <CurrenciesTable
             currencies={ cryptocurrencies }
             flatCurrency={ FlatCurrency.EUR }
-            onClick={ this.handleCurrencyClick }
           />
         </div>
       </div>

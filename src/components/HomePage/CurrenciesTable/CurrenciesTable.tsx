@@ -10,7 +10,6 @@ import './CurrenciesTable.css';
 interface Props {
   currencies: Cryptocurrency[];
   flatCurrency: FlatCurrency;
-  onClick(currency: Cryptocurrency): void;
 }
 
 export default class CurrenciesTable extends PureBaseComponent<Props> {
@@ -39,7 +38,6 @@ export default class CurrenciesTable extends PureBaseComponent<Props> {
                 index={ index }
                 currency={ currency }
                 flatCurrency={ flatCurrency }
-                onClick={ this.props.onClick }
               />,
           ) }
         </tbody>

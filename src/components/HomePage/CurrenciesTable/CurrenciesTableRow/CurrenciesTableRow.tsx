@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { withRouter, RouteComponentProps } from 'react-router';
 
 import PureBaseComponent from 'common/PureBaseComponent';
 import { Cryptocurrency } from 'types/cryptocurrency.type';
@@ -6,15 +7,21 @@ import { FlatCurrency } from 'types/flatCurrency.type';
 
 import './CurrenciesTableRow.css';
 
-interface Props {
+interface OwnProps {
   index: number;
   currency: Cryptocurrency;
   flatCurrency: FlatCurrency;
-  onClick(currency: Cryptocurrency): void;
 }
 
-export default class CurrenciesTableRow extends PureBaseComponent<Props> {
-  handleClick = () => this.props.onClick(this.props.currency);
+type Props = OwnProps & RouteComponentProps;
+
+export class CurrenciesTableRow extends PureBaseComponent<Props> {
+  handleClick = () => {
+    const { currency } = this.props;
+
+    // NOTE: We're not using <Link> to keep semantic table layout with <tr>
+    this.props.history.push(`/currency/${currency.id}/${currency.name}`);
+  }
 
   render() {
     const { index, currency, flatCurrency } = this.props;
@@ -54,3 +61,5 @@ export default class CurrenciesTableRow extends PureBaseComponent<Props> {
     );
   }
 }
+
+export default withRouter(CurrenciesTableRow);
