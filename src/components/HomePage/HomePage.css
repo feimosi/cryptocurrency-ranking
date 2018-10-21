@@ -1,1 +1,10 @@
-.HomePage {}
+.HomePage {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto 40px;
+  padding: 0 40px;
+
+  > h1 {
+    text-align: center;
+  }
+}

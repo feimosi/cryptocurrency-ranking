@@ -1,3 +1,5 @@
+import { FlatCurrency } from './flatCurrency.type';
+
 export class Cryptocurrency {
   id: number;
   name: string;
@@ -10,4 +12,15 @@ export class Cryptocurrency {
   numMarketPairs: number;
   cmcRank: number;
   lastUpdated: Date;
+  quote: {
+    [prop in FlatCurrency]: {
+      price: number;
+      volume24h: number;
+      percentChange1h: number;
+      percentChange24h: number;
+      percentChange7d: number;
+      marketCap: number;
+      lastUpdated: Date;
+    };
+  };
 }

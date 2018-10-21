@@ -1,0 +1,12 @@
+.CurrenciesTable {
+  width: 100%;
+
+  th {
+    padding: 6px 4px;
+    text-align: left;
+  }
+
+  th&__priceHeader {
+    text-align: right;
+  }
+}
