@@ -2,8 +2,8 @@ import { Reducer } from 'redux';
 import { ActionType, getType } from 'typesafe-actions';
 import produce from 'immer';
 
-import * as actions from './cryptocurrencies.actions';
 import { Cryptocurrency } from 'types/cryptocurrency.type';
+import * as actions from './cryptocurrencies.actions';
 
 export type CryptocurrenciesAction = ActionType<typeof actions>;
 
@@ -19,8 +19,16 @@ const cryptocurrenciesReducer: Reducer<StateType, CryptocurrenciesAction> =
   (state = initialState, action) => produce<StateType>(state, (draft) => {
     switch (action.type) {
       // TODO: Handle loading and error actions
-      case getType(actions.fetchCryptocurrenciesSuccess): {
-        draft.items = action.payload.cryptocurrencies.reduce((acc, next) => ({ ...acc, [next.id]: next }), {});
+      case getType(actions.fetchTopCryptocurrenciesSuccess): {
+        const { cryptocurrencies } = action.payload;
+
+        draft.items = cryptocurrencies.reduce((acc, next) => ({ ...acc, [next.id]: next }), {});
+        break;
+      }
+      case getType(actions.fetchCryptocurrencySuccess): {
+        const { cryptocurrency } = action.payload;
+
+        draft.items[cryptocurrency.id] = cryptocurrency;
         break;
       }
     }
