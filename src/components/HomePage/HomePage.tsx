@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
 import BaseComponent from 'common/BaseComponent';
+import Spinner from 'common/Spinner/Spinner';
 import * as cryptocurrenciesActions from 'state/entities/cryptocurrencies/cryptocurrencies.actions';
 import { getCryptocurrencies } from 'state/entities/cryptocurrencies/cryptocurrencies.selectors';
 import { RootState } from 'state/reducers';
@@ -15,6 +16,7 @@ import './HomePage.css';
 
 interface StateProps {
   cryptocurrencies: Cryptocurrency[];
+  isAllFetched: boolean;
 }
 
 interface DispatchProps {
@@ -29,17 +31,21 @@ export class HomePage extends BaseComponent<Props> {
   }
 
   render() {
-    const { cryptocurrencies } = this.props;
+    const { cryptocurrencies, isAllFetched } = this.props;
 
     return (
       <div className="HomePage">
         <h1>Top 100 Cryptocurrencies</h1>
 
-        <div>
+        <div className="HomePage__mainContent">
           <CurrenciesTable
             currencies={ cryptocurrencies }
             flatCurrency={ FlatCurrency.EUR }
           />
+          { !isAllFetched && <Spinner
+            color="#1200FF"
+            size={ 20 }
+          /> }
         </div>
       </div>
     );
@@ -48,6 +54,7 @@ export class HomePage extends BaseComponent<Props> {
 
 const mapStateToProps = (state: RootState) => ({
   cryptocurrencies: getCryptocurrencies(state),
+  isAllFetched: state.entities.cryptocurrencies.isAllFetched,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

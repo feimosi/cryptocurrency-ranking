@@ -5,7 +5,7 @@ import PureBaseComponent from 'common/PureBaseComponent';
 import './Spinner.css';
 
 interface Props {
-  className: string;
+  className?: string;
   color?: string;
   size?: number;
 }

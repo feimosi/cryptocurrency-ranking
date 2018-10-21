@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 
 import { RootState } from 'state/reducers';
 
+// TODO: Add getTopCryptocurrencies
 export const getCryptocurrencies = (state: RootState) => _.values(state.entities.cryptocurrencies.items);
 
 /* tslint:disable no-any */
