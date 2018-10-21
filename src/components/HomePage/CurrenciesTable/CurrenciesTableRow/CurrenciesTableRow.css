@@ -1,0 +1,37 @@
+.CurrenciesTableRow {
+  cursor: pointer;
+
+  &:hover {
+    background-color: #EEE;
+  }
+
+  > td {
+    padding: 6px 4px;
+
+    &:first-child {
+      padding-left: 10px;
+    }
+
+    &:last-child {
+      padding-right: 10px;
+    }
+  }
+
+  &__index {
+    width: 60px;
+  }
+
+  &__symbolCell {
+    width: 100px;
+  }
+
+  &__symbol {
+    padding: 4px 6px;
+    background-color: #CCC;
+    border-radius: 2px;
+  }
+
+  &__price {
+    text-align: right;
+  }
+}

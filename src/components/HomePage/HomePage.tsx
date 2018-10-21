@@ -9,6 +9,8 @@ import { getCryptocurrencies } from 'state/entities/cryptocurrencies/cryptocurre
 import { RootState } from 'state/reducers';
 import { Cryptocurrency } from 'types/cryptocurrency.type';
 import './HomePage.css';
+import CurrenciesTable from './CurrenciesTable/CurrenciesTable';
+import { FlatCurrency } from 'types/flatCurrency.type';
 
 interface StateProps {
   cryptocurrencies: Cryptocurrency[];
@@ -21,8 +23,12 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps;
 
 export class HomePage extends BaseComponent<Props> {
-  componentDidMount = () => {
+  componentDidMount() {
     this.props.actions.fetchCryptocurrencies();
+  }
+
+  handleCurrencyClick = () => {
+    /* TODO: */
   }
 
   render() {
@@ -30,14 +36,14 @@ export class HomePage extends BaseComponent<Props> {
 
     return (
       <div className="HomePage">
-        <h1>HomePage</h1>
+        <h1>Top 100 Cryptocurrencies</h1>
 
         <div>
-          { cryptocurrencies.map(currency => (
-            <div key={ currency.id }>
-              { currency.name }
-            </div>
-          )) }
+          <CurrenciesTable
+            currencies={ cryptocurrencies }
+            flatCurrency={ FlatCurrency.EUR }
+            onClick={ this.handleCurrencyClick }
+          />
         </div>
       </div>
     );
