@@ -56,7 +56,7 @@
     color .2s ease-out;
   border-radius: 5.5px;
   background-color: white;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
 

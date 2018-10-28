@@ -1,5 +1,8 @@
 import { createAction } from 'typesafe-actions';
 
-export const sampleAction = createAction('Global / Sample action', resolve =>
-  resolve,
-);
+import { FlatCurrency } from 'types/flatCurrency.type';
+
+export const changeFlatCurrency =
+  createAction('Global / Change flat currency', resolve =>
+    (flatCurrency: FlatCurrency) => resolve({ flatCurrency }),
+  );
