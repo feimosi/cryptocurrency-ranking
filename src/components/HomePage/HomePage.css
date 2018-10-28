@@ -8,6 +8,10 @@
     text-align: center;
   }
 
+  &__refreshButton {
+    margin-bottom: 14px;
+  }
+
   &__mainContent {
     display: flex;
     flex-direction: column;

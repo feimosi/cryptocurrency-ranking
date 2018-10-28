@@ -1,13 +1,14 @@
 import * as React from 'react';
 
+import Link from 'common/Link/Link';
 import './Header.css';
 
 export default function Header() {
   return (
     <div className="Header">
-      <div>
+      <Link to="/">
         Cryptocurrency ranking
-      </div>
+      </Link>
     </div>
   );
 }

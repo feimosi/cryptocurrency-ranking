@@ -1,1 +1,21 @@
-.CryptocurrencyDetailsPage {}
+.CryptocurrencyDetailsPage {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto 40px;
+  padding: 0 40px;
+
+  &__name {
+    font-size: 30px;
+  }
+
+  &__symbol {
+    color: rgba(39, 52, 64, .5);
+    font-size: 17px;
+  }
+
+  &__stats {
+    > div {
+      margin: 10px 0;
+    }
+  }
+}

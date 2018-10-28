@@ -14,3 +14,9 @@ export const makeGetCryptocurrency = (getCryptocurrencyId: (state: RootState, pr
       _.values(cryptocurrencies).find(e => e.id === cryptocurrencyId),
   );
 /* tslint:enable no-any */
+
+export const getBitcoin = createSelector(
+  [getCryptocurrencies],
+  cryptocurrencies =>
+    _.values(cryptocurrencies).find(e => e.symbol === 'BTC'),
+);

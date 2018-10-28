@@ -44,9 +44,9 @@
   outline: none;
   border: 1px solid transparent;
   border-radius: 4px;
-  padding: 15px 23px;
+  padding: 6px 18px;
   position: relative;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 20px;
   cursor: pointer;
@@ -54,7 +54,7 @@
   transition:
     background-color .2s ease-out,
     color .2s ease-out;
-  border-radius: 25.5px;
+  border-radius: 5.5px;
   background-color: white;
   display: flex;
   justify-content: center;
@@ -74,7 +74,7 @@
 
   &--primary {
     @mixin button-variant
-      white, #1200FF, transparent,
+      white, #635ada, transparent,
       #484848, #ddd, #1f86db;
   }
 

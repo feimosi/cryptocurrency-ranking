@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
 import BaseComponent from 'common/BaseComponent';
-import Spinner from 'common/Spinner/Spinner';
+import Button from 'common/Button';
+import Spinner from 'common/Spinner';
 import * as cryptocurrenciesActions from 'state/entities/cryptocurrencies/cryptocurrencies.actions';
 import { getCryptocurrencies } from 'state/entities/cryptocurrencies/cryptocurrencies.selectors';
 import { RootState } from 'state/reducers';
@@ -36,6 +37,12 @@ export class HomePage extends BaseComponent<Props> {
     return (
       <div className="HomePage">
         <h1>Top 100 Cryptocurrencies</h1>
+
+        <div className="HomePage__refreshButton">
+          <Button theme="primary">
+            Refresh
+          </Button>
+        </div>
 
         <div className="HomePage__mainContent">
           <CurrenciesTable

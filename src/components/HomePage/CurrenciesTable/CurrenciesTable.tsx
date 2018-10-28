@@ -34,7 +34,9 @@ export default class CurrenciesTable extends PureBaseComponent<Props> {
         </thead>
 
         <tbody>
-          { currencies.map((currency, index) =>
+          { currencies
+            .sort((a, b) => a.cmcRank > b.cmcRank ? 1 : -1)
+            .map((currency, index) =>
               <CurrenciesTableRow
                 key={ currency.id }
                 index={ index }
