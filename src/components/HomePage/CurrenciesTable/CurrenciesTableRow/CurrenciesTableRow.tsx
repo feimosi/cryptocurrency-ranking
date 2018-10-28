@@ -31,6 +31,9 @@ export class CurrenciesTableRow extends PureBaseComponent<Props> {
       .toString()
       .replace(/0+$/, '');
 
+    const percentChange24h = currency.quote[flatCurrency].percentChange24h
+      .toFixed(2);
+
     return (
       <tr
         className="CurrenciesTableRow"
@@ -49,13 +52,13 @@ export class CurrenciesTableRow extends PureBaseComponent<Props> {
         </td>
 
         <td>
-          { currency.name }
-        </td>
-
-        <td>
           <div className="CurrenciesTableRow__price">
             { price } { flatCurrency }
           </div>
+        </td>
+
+        <td className="CurrenciesTableRow__change24h">
+          { percentChange24h }%
         </td>
       </tr>
     );

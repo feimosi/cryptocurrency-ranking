@@ -6,7 +6,8 @@
     text-align: left;
   }
 
-  th&__priceHeader {
+  th&__priceHeader,
+  th&__change24hHeader {
     text-align: right;
   }
 }

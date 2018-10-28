@@ -34,4 +34,9 @@
   &__price {
     text-align: right;
   }
+
+  &__change24h {
+    width: 120px;
+    text-align: right;
+  }
 }

@@ -1,15 +1,23 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { getType, ActionType } from 'typesafe-actions';
+import camelcaseKeys from 'camelcase-keys';
 
 import { Cryptocurrency } from 'types/cryptocurrency.type';
 import * as actions from './cryptocurrencies.actions';
 import * as mockedResponse from './cryptocurrencies.mockedResponse.json';
 
+// NOTE: Workaround: camelcaseKeys breaks when parsing quote property
+let responseData = camelcaseKeys(mockedResponse.data);
+responseData = responseData.map(e => ({
+  ...e,
+  quote: { EUR: camelcaseKeys(e.quote.EUR) },
+}));
+
 function* fetchTopCryptocurrencies() {
   try {
     const response: { data: Cryptocurrency[] } = yield call(async () =>
       new Promise(resolve =>
-        setTimeout(() => resolve({ data: mockedResponse.data }), 300),
+        setTimeout(() => resolve({ data: responseData }), 300),
       ));
 
     yield put(actions.fetchTopCryptocurrenciesSuccess(response.data));
@@ -28,7 +36,8 @@ function* fetchCryptocurrency(action: ActionType<typeof actions.fetchCryptocurre
 
     const response: { data: Cryptocurrency } = yield call(async () =>
       new Promise(resolve =>
-        setTimeout(() => resolve({ data: mockedResponse.data.find(c => c.id === currencyId) }), 300),
+        setTimeout(() => resolve({ data: (responseData as Cryptocurrency[])
+          .find(c => c.id === currencyId) }), 300),
       ));
 
     yield put(actions.fetchCryptocurrencySuccess(response.data));

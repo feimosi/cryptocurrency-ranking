@@ -24,9 +24,11 @@ export default class CurrenciesTable extends PureBaseComponent<Props> {
           <tr>
             <th>#</th>
             <th>Symbol</th>
-            <th>Name</th>
             <th className="CurrenciesTable__priceHeader">
               Price
+            </th>
+            <th className="CurrenciesTable__change24hHeader">
+              Change (24h)
             </th>
           </tr>
         </thead>
