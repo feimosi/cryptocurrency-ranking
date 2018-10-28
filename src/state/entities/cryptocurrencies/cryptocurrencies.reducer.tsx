@@ -20,7 +20,6 @@ const initialState: StateType = {
 const cryptocurrenciesReducer: Reducer<StateType, CryptocurrenciesAction> =
   (state = initialState, action) => produce<StateType>(state, (draft) => {
     switch (action.type) {
-      // TODO: Handle loading and error actions
       case getType(actions.fetchTopCryptocurrenciesSuccess): {
         const { cryptocurrencies } = action.payload;
 

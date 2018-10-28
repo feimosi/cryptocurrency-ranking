@@ -8,6 +8,7 @@ import Button from 'common/Button';
 import Spinner from 'common/Spinner';
 import * as cryptocurrenciesActions from 'state/entities/cryptocurrencies/cryptocurrencies.actions';
 import { getCryptocurrencies } from 'state/entities/cryptocurrencies/cryptocurrencies.selectors';
+import { getCurrentFlatCurrency } from 'state/global/global.selectors';
 import { RootState } from 'state/reducers';
 import { Cryptocurrency } from 'types/cryptocurrency.type';
 import { FlatCurrency } from 'types/flatCurrency.type';
@@ -18,6 +19,7 @@ import './HomePage.css';
 interface StateProps {
   cryptocurrencies: Cryptocurrency[];
   isAllFetched: boolean;
+  currentFlatCurrency: FlatCurrency;
 }
 
 interface DispatchProps {
@@ -32,7 +34,7 @@ export class HomePage extends BaseComponent<Props> {
   }
 
   render() {
-    const { cryptocurrencies, isAllFetched } = this.props;
+    const { cryptocurrencies, isAllFetched, currentFlatCurrency } = this.props;
 
     return (
       <div className="HomePage">
@@ -47,7 +49,7 @@ export class HomePage extends BaseComponent<Props> {
         <div className="HomePage__mainContent">
           <CurrenciesTable
             currencies={ cryptocurrencies }
-            flatCurrency={ FlatCurrency.EUR }
+            flatCurrency={ currentFlatCurrency }
           />
           { !isAllFetched && <Spinner
             color="#1200FF"
@@ -59,9 +61,10 @@ export class HomePage extends BaseComponent<Props> {
   }
 }
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (state: RootState): StateProps => ({
   cryptocurrencies: getCryptocurrencies(state),
   isAllFetched: state.entities.cryptocurrencies.isAllFetched,
+  currentFlatCurrency: getCurrentFlatCurrency(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

@@ -8,6 +8,7 @@ import Button from 'common/Button';
 import PageLoadingBar from 'common/PageLoadingBar';
 import * as cryptocurrenciesActions from 'state/entities/cryptocurrencies/cryptocurrencies.actions';
 import { makeGetCryptocurrency, getBitcoin } from 'state/entities/cryptocurrencies/cryptocurrencies.selectors';
+import { getCurrentFlatCurrency } from 'state/global/global.selectors';
 import { RootState } from 'state/reducers';
 import { Cryptocurrency } from 'types/cryptocurrency.type';
 import { FlatCurrency } from 'types/flatCurrency.type';
@@ -17,6 +18,7 @@ import './CryptocurrencyDetailsPage.css';
 interface StateProps {
   cryptocurrency: Cryptocurrency;
   bitcoin: Cryptocurrency;
+  currentFlatCurrency: FlatCurrency;
 }
 
 interface DispatchProps {
@@ -34,13 +36,13 @@ export class CryptocurrencyDetailsPage extends BaseComponent<Props> {
   }
 
   render() {
-    const { cryptocurrency, bitcoin } = this.props;
+    const { cryptocurrency, bitcoin, currentFlatCurrency } = this.props;
 
     if (!cryptocurrency) {
       return <PageLoadingBar />;
     }
 
-    const quote = cryptocurrency.quote[FlatCurrency.EUR];
+    const quote = cryptocurrency.quote[currentFlatCurrency];
     const price = +quote.price.toFixed(2);
 
     return (
@@ -62,21 +64,21 @@ export class CryptocurrencyDetailsPage extends BaseComponent<Props> {
           </div>
           <div>
             <strong>Price: </strong>
-            { price.toLocaleString() } { FlatCurrency.EUR }
+            { price.toLocaleString() } { currentFlatCurrency }
           </div>
           <div>
             <strong>Volume (24h): </strong>
-            { quote.volume24h.toLocaleString() } { FlatCurrency.EUR }
+            { quote.volume24h.toLocaleString() } { currentFlatCurrency }
           </div>
           <div>
             <strong>Market Cap: </strong>
-            { quote.marketCap.toLocaleString() } { FlatCurrency.EUR }
+            { quote.marketCap.toLocaleString() } { currentFlatCurrency }
           </div>
 
           { bitcoin &&
             <div>
               <strong>Price in Bitcoin: </strong>
-              { cryptocurrency.quote[FlatCurrency.EUR].price / bitcoin.quote[FlatCurrency.EUR].price } BTC
+              { cryptocurrency.quote[currentFlatCurrency].price / bitcoin.quote[currentFlatCurrency].price } BTC
             </div>
           }
 
@@ -102,12 +104,16 @@ export class CryptocurrencyDetailsPage extends BaseComponent<Props> {
             <strong>Total Supply: </strong>
             { cryptocurrency.totalSupply.toLocaleString() } { cryptocurrency.symbol }
           </div>
+        </div>
 
-          <div>
-            <Button theme="primary">
-              Refresh
-            </Button>
-          </div>
+        <div className="CryptocurrencyDetailsPage__buttonsBar">
+          <Button to="/" theme="secondary">
+            Go back
+          </Button>
+
+          <Button theme="primary">
+            Refresh
+          </Button>
         </div>
       </div>
     );
@@ -122,6 +128,7 @@ const makeMapStateToProps = () => {
   return (state: RootState, props: RouteComponentProps<{ currencyId: string }>): StateProps => ({
     cryptocurrency: getCryptocurrency(state, props),
     bitcoin: getBitcoin(state),
+    currentFlatCurrency: getCurrentFlatCurrency(state),
   });
 };
 
