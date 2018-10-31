@@ -1,6 +1,8 @@
 import * as React from 'react';
 
-import Link from 'common/Link/Link';
+import Button from 'common/Button';
+import Img from 'common/Img';
+import Link from 'common/Link';
 import './Header.css';
 
 export default function Header() {
@@ -9,6 +11,9 @@ export default function Header() {
       <Link to="/">
         Cryptocurrency ranking
       </Link>
-    </div>
+      <Button className="Header__settingsButton" to="/settings">
+        <Img src="/img/settings.svg" />
+      </Button>
+   </div>
   );
 }

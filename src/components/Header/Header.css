@@ -1,4 +1,14 @@
 .Header {
+  display: flex;
+  justify-content: space-between;
   padding: 20px 45px 20px;
   border-bottom: 1px solid #F4F3F6;
+
+  &__settingsButton {
+    padding: 4px 10px;
+
+    .Img {
+      height: 20px;
+    }
+  }
 }
