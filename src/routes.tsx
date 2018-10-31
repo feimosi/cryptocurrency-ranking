@@ -13,6 +13,9 @@ const AsyncHomePage = Loadable({
 const AsyncCryptocurrencyDetailsPage = Loadable({
   loader: () => import(/* webpackChunkName: "homePage" */ 'components/CryptocurrencyDetailsPage'),
 });
+const AsyncSettingsPage = Loadable({
+  loader: () => import(/* webpackChunkName: "homePage" */ 'components/SettingsPage'),
+});
 /* tslint:enable space-in-parens promise-function-async */
 
 export default function routes() {
@@ -20,6 +23,7 @@ export default function routes() {
     <Switch>
       <Route path="/" exact component={ AsyncHomePage } />
       <Route path="/currency/:currencyId/:currency" exact component={ AsyncCryptocurrencyDetailsPage } />
+      <Route path="/settings" exact component={ AsyncSettingsPage } />
     </Switch>
   );
 }
