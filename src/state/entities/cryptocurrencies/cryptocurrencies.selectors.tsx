@@ -1,10 +1,17 @@
 import { createSelector } from 'reselect';
 import * as _ from 'lodash';
 
+import { getCurrentFlatCurrency } from 'state/global/global.selectors';
 import { RootState } from 'state/reducers';
+import { Cryptocurrency } from 'types/cryptocurrency.type';
 
 // TODO: Add getTopCryptocurrencies
-export const getCryptocurrencies = (state: RootState) => _.values(state.entities.cryptocurrencies.items);
+export const getCryptocurrencies = createSelector([
+  (state: RootState): Cryptocurrency[] => _.values(state.entities.cryptocurrencies.items),
+  getCurrentFlatCurrency,
+], (cryptocurrencies, flatCurrency) =>
+  _.values(cryptocurrencies).every(e => Boolean(e.quote[flatCurrency])) ? cryptocurrencies : [],
+);
 
 /* tslint:disable no-any */
 export const makeGetCryptocurrency = (getCryptocurrencyId: (state: RootState, props: any) => number) =>

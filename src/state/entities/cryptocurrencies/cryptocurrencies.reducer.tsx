@@ -20,6 +20,10 @@ const initialState: StateType = {
 const cryptocurrenciesReducer: Reducer<StateType, CryptocurrenciesAction> =
   (state = initialState, action) => produce<StateType>(state, (draft) => {
     switch (action.type) {
+      case getType(actions.fetchTopCryptocurrencies): {
+        draft.isAllFetched = false;
+        break;
+      }
       case getType(actions.fetchTopCryptocurrenciesSuccess): {
         const { cryptocurrencies } = action.payload;
 
