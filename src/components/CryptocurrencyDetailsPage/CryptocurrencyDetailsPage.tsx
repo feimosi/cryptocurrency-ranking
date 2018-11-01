@@ -29,10 +29,10 @@ type Props = StateProps & DispatchProps & RouteComponentProps<{ currencyId: stri
 
 export class CryptocurrencyDetailsPage extends BaseComponent<Props> {
   componentDidMount() {
-    const { match } = this.props;
+    const { match, currentFlatCurrency } = this.props;
     const currencyId = Number.parseInt(match.params.currencyId, 10);
 
-    this.props.actions.fetchCryptocurrency(currencyId);
+    this.props.actions.fetchCryptocurrency(currencyId, currentFlatCurrency);
   }
 
   render() {

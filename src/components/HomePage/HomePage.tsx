@@ -30,7 +30,9 @@ type Props = StateProps & DispatchProps;
 
 export class HomePage extends BaseComponent<Props> {
   componentDidMount() {
-    this.props.actions.fetchTopCryptocurrencies();
+    const { actions, currentFlatCurrency } = this.props;
+
+    actions.fetchTopCryptocurrencies(currentFlatCurrency);
   }
 
   render() {
