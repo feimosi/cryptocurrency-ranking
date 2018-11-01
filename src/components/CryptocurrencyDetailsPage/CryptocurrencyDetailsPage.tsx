@@ -7,7 +7,7 @@ import BaseComponent from 'common/BaseComponent';
 import Button from 'common/Button';
 import PageLoadingBar from 'common/PageLoadingBar';
 import * as cryptocurrenciesActions from 'state/entities/cryptocurrencies/cryptocurrencies.actions';
-import { makeGetCryptocurrency, getBitcoin } from 'state/entities/cryptocurrencies/cryptocurrencies.selectors';
+import { makeGetCryptocurrencySelector, getBitcoinSelector } from 'state/entities/cryptocurrencies/cryptocurrencies.selectors';
 import { getCurrentFlatCurrency } from 'state/global/global.selectors';
 import { RootState } from 'state/reducers';
 import { Cryptocurrency } from 'types/cryptocurrency.type';
@@ -123,11 +123,11 @@ export class CryptocurrencyDetailsPage extends BaseComponent<Props> {
 const makeMapStateToProps = () => {
   const getCryptocurrencyId = (_state: RootState, props: Props) =>
     Number.parseInt(props.match.params.currencyId, 10);
-  const getCryptocurrency = makeGetCryptocurrency(getCryptocurrencyId);
+  const getCryptocurrency = makeGetCryptocurrencySelector(getCryptocurrencyId);
 
   return (state: RootState, props: RouteComponentProps<{ currencyId: string }>): StateProps => ({
     cryptocurrency: getCryptocurrency(state, props),
-    bitcoin: getBitcoin(state),
+    bitcoin: getBitcoinSelector(state),
     currentFlatCurrency: getCurrentFlatCurrency(state),
   });
 };

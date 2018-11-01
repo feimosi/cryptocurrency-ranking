@@ -7,7 +7,7 @@ import BaseComponent from 'common/BaseComponent';
 import Button from 'common/Button';
 import Spinner from 'common/Spinner';
 import * as cryptocurrenciesActions from 'state/entities/cryptocurrencies/cryptocurrencies.actions';
-import { getCryptocurrencies } from 'state/entities/cryptocurrencies/cryptocurrencies.selectors';
+import { getTopCryptocurrenciesSelector } from 'state/entities/cryptocurrencies/cryptocurrencies.selectors';
 import { getCurrentFlatCurrency } from 'state/global/global.selectors';
 import { RootState } from 'state/reducers';
 import { Cryptocurrency } from 'types/cryptocurrency.type';
@@ -64,7 +64,7 @@ export class HomePage extends BaseComponent<Props> {
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
-  cryptocurrencies: getCryptocurrencies(state),
+  cryptocurrencies: getTopCryptocurrenciesSelector(state),
   isAllFetched: state.entities.cryptocurrencies.isAllFetched,
   currentFlatCurrency: getCurrentFlatCurrency(state),
 });
