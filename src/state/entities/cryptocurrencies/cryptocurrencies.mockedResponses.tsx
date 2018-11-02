@@ -13,7 +13,7 @@ const randomizePrice = (price: number) =>
   price * ((Math.random() - Math.random()) / 10 + 1);
 
 // NOTE: Workaround: camelcaseKeys breaks when parsing 'quote' property
-export const getResponseListingsCNY = () => responseListingsCNY.map((e: Cryptocurrency) => ({
+export const getResponseListingsCNY = (): Cryptocurrency[] => responseListingsCNY.map((e: Cryptocurrency) => ({
   ...e,
   quote: {
     ...e.quote,
@@ -24,7 +24,7 @@ export const getResponseListingsCNY = () => responseListingsCNY.map((e: Cryptocu
   },
 }));
 
-export const getResponseListingsEUR = () => responseListingsEUR.map((e: Cryptocurrency) => ({
+export const getResponseListingsEUR = (): Cryptocurrency[] => responseListingsEUR.map((e: Cryptocurrency) => ({
   ...e,
   quote: {
     ...e.quote,
@@ -35,7 +35,7 @@ export const getResponseListingsEUR = () => responseListingsEUR.map((e: Cryptocu
   },
 }));
 
-export const getResponseListingsUSD = () => responseListingsUSD.map((e: Cryptocurrency) => ({
+export const getResponseListingsUSD = (): Cryptocurrency[] => responseListingsUSD.map((e: Cryptocurrency) => ({
   ...e,
   quote: {
     ...e.quote,
