@@ -3,15 +3,19 @@ import * as _ from 'lodash';
 
 import { getCurrentFlatCurrency } from 'state/global/global.selectors';
 import { RootState } from 'state/reducers';
-import { Cryptocurrency } from 'types/cryptocurrency.type';
 
-const getCryptocurrenciesSelector = (state: RootState): Cryptocurrency[] =>
-  _.values(state.entities.cryptocurrencies.items);
+const getReduxCryptocurrencies = (state: RootState) =>
+  state.entities.cryptocurrencies.items;
+
+const getReduxTopCryptocurrencies = (state: RootState) =>
+  state.entities.cryptocurrencies.top.items;
 
 export const getTopCryptocurrenciesSelector = createSelector(
-  [getCryptocurrenciesSelector, getCurrentFlatCurrency],
-  (cryptocurrencies, flatCurrency) =>
-    _.values(cryptocurrencies).every(e => Boolean(e.quote[flatCurrency])) ? cryptocurrencies : [],
+  [getReduxCryptocurrencies, getReduxTopCryptocurrencies, getCurrentFlatCurrency],
+  (cryptocurrencies, topCryptocurrencies, flatCurrency) =>
+    topCryptocurrencies
+      .map(currencyId => cryptocurrencies[currencyId])
+      .filter(currency => Boolean(currency.quote[flatCurrency])),
 );
 
 /* tslint:disable no-any */

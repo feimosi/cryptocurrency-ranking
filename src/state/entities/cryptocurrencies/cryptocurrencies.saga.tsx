@@ -10,11 +10,11 @@ import * as responseListings from './cryptocurrencies.mockedResponses';
 
 function getCryptocurrencyListings(flatCurrency: FlatCurrency): Cryptocurrency[] {
   return flatCurrency === FlatCurrency.CNY ?
-    responseListings.responseListingsCNY :
+    responseListings.getResponseListingsCNY() :
     flatCurrency === FlatCurrency.EUR ?
-      responseListings.responseListingsEUR :
+      responseListings.getResponseListingsEUR() :
       flatCurrency === FlatCurrency.USD ?
-        responseListings.responseListingsUSD : [];
+        responseListings.getResponseListingsUSD() : [];
 }
 
 function* fetchTopCryptocurrencies(action: ActionType<typeof actions.fetchTopCryptocurrencies>) {

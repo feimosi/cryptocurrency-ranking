@@ -9,26 +9,37 @@ export type CryptocurrenciesAction = ActionType<typeof actions>;
 
 export interface StateType {
   readonly items: { [s: number]: Cryptocurrency };
-  readonly isAllFetched: boolean;
+  readonly top: {
+    readonly items: number[];
+    readonly isLoading: boolean;
+    readonly isRefreshing: boolean;
+  };
 }
 
 const initialState: StateType = {
   items: {},
-  isAllFetched: false,
+  top: {
+    items: [],
+    isLoading: false,
+    isRefreshing: false,
+  },
 };
 
 const cryptocurrenciesReducer: Reducer<StateType, CryptocurrenciesAction> =
   (state = initialState, action) => produce<StateType>(state, (draft) => {
     switch (action.type) {
       case getType(actions.fetchTopCryptocurrencies): {
-        draft.isAllFetched = false;
+        draft.top.isLoading = true;
+        draft.top.isRefreshing = state.top.items.length > 0;
         break;
       }
       case getType(actions.fetchTopCryptocurrenciesSuccess): {
         const { cryptocurrencies } = action.payload;
 
         draft.items = cryptocurrencies.reduce((acc, next) => ({ ...acc, [next.id]: next }), {});
-        draft.isAllFetched = true;
+        draft.top.items = cryptocurrencies.map(c => c.id);
+        draft.top.isLoading = false;
+        draft.top.isRefreshing = false;
         break;
       }
       case getType(actions.fetchCryptocurrencySuccess): {

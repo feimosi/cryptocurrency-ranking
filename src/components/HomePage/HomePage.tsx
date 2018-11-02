@@ -18,8 +18,9 @@ import './HomePage.css';
 
 interface StateProps {
   cryptocurrencies: Cryptocurrency[];
-  isAllFetched: boolean;
   currentFlatCurrency: FlatCurrency;
+  isLoading: boolean;
+  isRefreshing: boolean;
 }
 
 interface DispatchProps {
@@ -30,20 +31,34 @@ type Props = StateProps & DispatchProps;
 
 export class HomePage extends BaseComponent<Props> {
   componentDidMount() {
+    this.refreshData();
+  }
+
+  refreshData = () => {
     const { actions, currentFlatCurrency } = this.props;
 
     actions.fetchTopCryptocurrencies(currentFlatCurrency);
   }
 
   render() {
-    const { cryptocurrencies, isAllFetched, currentFlatCurrency } = this.props;
+    const {
+      cryptocurrencies,
+      currentFlatCurrency,
+      isLoading,
+      isRefreshing,
+   } = this.props;
 
     return (
       <div className="HomePage">
         <h1>Top 100 Cryptocurrencies</h1>
 
         <div className="HomePage__refreshButton">
-          <Button theme="primary">
+          <Button
+            theme="primary"
+            onClick={ this.refreshData }
+            disabled={ isRefreshing }
+            loading={ isRefreshing }
+          >
             Refresh
           </Button>
         </div>
@@ -53,7 +68,7 @@ export class HomePage extends BaseComponent<Props> {
             currencies={ cryptocurrencies }
             flatCurrency={ currentFlatCurrency }
           />
-          { !isAllFetched && <Spinner
+          { isLoading && <Spinner
             color="#1200FF"
             size={ 20 }
           /> }
@@ -65,8 +80,9 @@ export class HomePage extends BaseComponent<Props> {
 
 const mapStateToProps = (state: RootState): StateProps => ({
   cryptocurrencies: getTopCryptocurrenciesSelector(state),
-  isAllFetched: state.entities.cryptocurrencies.isAllFetched,
   currentFlatCurrency: getCurrentFlatCurrency(state),
+  isLoading: state.entities.cryptocurrencies.top.isLoading,
+  isRefreshing: state.entities.cryptocurrencies.top.isRefreshing,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

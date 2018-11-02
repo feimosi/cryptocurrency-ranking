@@ -5,35 +5,43 @@ import * as mockedListingsEUR from './mocked-listings-EUR.json';
 import * as mockedListingsUSD from './mocked-listings-USD.json';
 import { Cryptocurrency } from 'types/cryptocurrency.type.js';
 
-let mappedMockedListingsCNY: Cryptocurrency[] = camelcaseKeys(mockedListingsCNY.data);
-let mappedMockedListingsEUR: Cryptocurrency[] = camelcaseKeys(mockedListingsEUR.data);
-let mappedMockedListingsUSD: Cryptocurrency[] = camelcaseKeys(mockedListingsUSD.data);
+const responseListingsCNY: Cryptocurrency[] = camelcaseKeys(mockedListingsCNY.data);
+const responseListingsEUR: Cryptocurrency[] = camelcaseKeys(mockedListingsEUR.data);
+const responseListingsUSD: Cryptocurrency[] = camelcaseKeys(mockedListingsUSD.data);
 
-// NOTE: Workaround: camelcaseKeys breaks when parsing quote property
-mappedMockedListingsCNY = mappedMockedListingsCNY.map((e: Cryptocurrency) => ({
+const randomizePrice = (price: number) =>
+  price * ((Math.random() - Math.random()) / 10 + 1);
+
+// NOTE: Workaround: camelcaseKeys breaks when parsing 'quote' property
+export const getResponseListingsCNY = () => responseListingsCNY.map((e: Cryptocurrency) => ({
   ...e,
   quote: {
     ...e.quote,
-    CNY: camelcaseKeys(e.quote.CNY),
+    CNY: {
+      ...camelcaseKeys(e.quote.CNY),
+      price: randomizePrice(e.quote.CNY.price),
+    },
   },
 }));
 
-mappedMockedListingsEUR = mappedMockedListingsEUR.map((e: Cryptocurrency) => ({
+export const getResponseListingsEUR = () => responseListingsEUR.map((e: Cryptocurrency) => ({
   ...e,
   quote: {
     ...e.quote,
-    EUR: camelcaseKeys(e.quote.EUR),
+    EUR: {
+      ...camelcaseKeys(e.quote.EUR),
+      price: randomizePrice(e.quote.EUR.price),
+    },
   },
 }));
 
-mappedMockedListingsUSD = mappedMockedListingsUSD.map((e: Cryptocurrency) => ({
+export const getResponseListingsUSD = () => responseListingsUSD.map((e: Cryptocurrency) => ({
   ...e,
   quote: {
     ...e.quote,
-    USD: camelcaseKeys(e.quote.USD),
+    USD: {
+      ...camelcaseKeys(e.quote.USD),
+      price: randomizePrice(e.quote.USD.price),
+    },
   },
 }));
-
-export const responseListingsCNY = mappedMockedListingsCNY;
-export const responseListingsEUR = mappedMockedListingsEUR;
-export const responseListingsUSD = mappedMockedListingsUSD;
