@@ -29,6 +29,10 @@ type Props = StateProps & DispatchProps & RouteComponentProps<{ currencyId: stri
 
 export class CryptocurrencyDetailsPage extends BaseComponent<Props> {
   componentDidMount() {
+    this.refreshData();
+  }
+
+  refreshData = () => {
     const { match, currentFlatCurrency } = this.props;
     const currencyId = Number.parseInt(match.params.currencyId, 10);
 
@@ -111,7 +115,10 @@ export class CryptocurrencyDetailsPage extends BaseComponent<Props> {
             Go back
           </Button>
 
-          <Button theme="primary">
+          <Button
+            theme="primary"
+            onClick={ this.refreshData }
+          >
             Refresh
           </Button>
         </div>
