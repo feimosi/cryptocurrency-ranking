@@ -115,15 +115,15 @@ export class CryptocurrencyDetailsPage extends BaseComponent<Props> {
         </div>
 
         <div className="CryptocurrencyDetailsPage__buttonsBar">
-          <Button to="/" theme="secondary">
-            Go back
-          </Button>
-
           <Button
             theme="primary"
             onClick={ this.refreshData }
           >
             Refresh
+          </Button>
+
+          <Button to="/" theme="secondary">
+            Go back
           </Button>
         </div>
       </div>
