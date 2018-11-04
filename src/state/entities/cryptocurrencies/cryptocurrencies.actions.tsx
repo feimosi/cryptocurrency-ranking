@@ -1,13 +1,13 @@
 import { createAction } from 'typesafe-actions';
 
 import { Cryptocurrency } from 'types/cryptocurrency.type';
-import { FlatCurrency } from 'types/flatCurrency.type';
+import { FiatCurrency } from 'types/fiatCurrency.type';
 
 /* Fetch top cryptocurrencies */
 
 export const fetchTopCryptocurrencies =
   createAction('Cryptocurrencies / Fetch top cryptocurrencies / Loading', resolve =>
-    (flatCurrency: FlatCurrency) => resolve({ flatCurrency }),
+    (fiatCurrency: FiatCurrency) => resolve({ fiatCurrency }),
   );
 
 export const fetchTopCryptocurrenciesSuccess =
@@ -24,7 +24,7 @@ export const fetchTopCryptocurrenciesError =
 
 export const fetchCryptocurrency =
   createAction('Cryptocurrencies / Fetch cryptocurrency / Loading', resolve =>
-    (currencyId: number, flatCurrency: FlatCurrency) => resolve({ currencyId, flatCurrency }),
+    (currencyId: number, fiatCurrency: FiatCurrency) => resolve({ currencyId, fiatCurrency }),
   );
 
 export const fetchCryptocurrencySuccess =

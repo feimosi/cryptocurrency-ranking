@@ -1,3 +1,3 @@
 import { RootState } from 'state/reducers';
 
-export const getCurrentFlatCurrency = (state: RootState) => state.global.currentFlatCurrency;
+export const getCurrentFiatCurrency = (state: RootState) => state.global.currentFiatCurrency;

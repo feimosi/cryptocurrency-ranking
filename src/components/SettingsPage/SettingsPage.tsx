@@ -7,13 +7,13 @@ import BaseComponent from 'common/BaseComponent';
 import Button from 'common/Button';
 import Img from 'common/Img';
 import * as globalActions from 'state/global/global.actions';
-import { getCurrentFlatCurrency } from 'state/global/global.selectors';
+import { getCurrentFiatCurrency } from 'state/global/global.selectors';
 import { RootState } from 'state/reducers';
-import { FlatCurrency } from 'types/flatCurrency.type';
+import { FiatCurrency } from 'types/fiatCurrency.type';
 import './SettingsPage.css';
 
 interface StateProps {
-  currentFlatCurrency: FlatCurrency;
+  currentFiatCurrency: FiatCurrency;
 }
 
 interface DispatchProps {
@@ -25,44 +25,44 @@ type Props = StateProps & DispatchProps;
 export class SettingsPage extends BaseComponent<Props> {
   static defaultProps = {};
 
-  handleCurrencyChange = (newCurrency: FlatCurrency) => {
-    this.props.actions.changeFlatCurrency(newCurrency);
+  handleCurrencyChange = (newCurrency: FiatCurrency) => {
+    this.props.actions.changeFiatCurrency(newCurrency);
   }
 
   render() {
-    const { currentFlatCurrency } = this.props;
+    const { currentFiatCurrency } = this.props;
 
     return (
       <div className="SettingsPage">
         <h1>Settings</h1>
 
-        <h2>Flat currency</h2>
+        <h2>Fiat currency</h2>
 
         <RadioGroup
-          className="SettingsPage__flatCurrencyFieldset"
-          name="flatCurrency"
-          selectedValue={ currentFlatCurrency }
+          className="SettingsPage__fiatCurrencyFieldset"
+          name="fiatCurrency"
+          selectedValue={ currentFiatCurrency }
           onChange={ this.handleCurrencyChange }
         >
-          <div className="SettingsPage__flatCurrencyOption">
-            <Radio value={ FlatCurrency.USD } id={ FlatCurrency.USD } />
-            <label htmlFor={ FlatCurrency.USD }>
+          <div className="SettingsPage__fiatCurrencyOption">
+            <Radio value={ FiatCurrency.USD } id={ FiatCurrency.USD } />
+            <label htmlFor={ FiatCurrency.USD }>
               <Img src="/img/flags/united-states.svg" />
               USD
             </label>
           </div>
 
-          <div className="SettingsPage__flatCurrencyOption">
-            <Radio value={ FlatCurrency.EUR } id={ FlatCurrency.EUR }/>
-            <label htmlFor={ FlatCurrency.EUR }>
+          <div className="SettingsPage__fiatCurrencyOption">
+            <Radio value={ FiatCurrency.EUR } id={ FiatCurrency.EUR }/>
+            <label htmlFor={ FiatCurrency.EUR }>
               <Img src="/img/flags/european-union.svg" />
               EUR
             </label>
           </div>
 
-          <div className="SettingsPage__flatCurrencyOption">
-            <Radio value={ FlatCurrency.CNY } id={ FlatCurrency.CNY }/>
-            <label htmlFor={ FlatCurrency.CNY }>
+          <div className="SettingsPage__fiatCurrencyOption">
+            <Radio value={ FiatCurrency.CNY } id={ FiatCurrency.CNY }/>
+            <label htmlFor={ FiatCurrency.CNY }>
               <Img src="/img/flags/china.svg" />
               CNY
             </label>
@@ -80,7 +80,7 @@ export class SettingsPage extends BaseComponent<Props> {
 }
 
 const makeMapStateToProps = (state: RootState): StateProps => ({
-  currentFlatCurrency: getCurrentFlatCurrency(state),
+  currentFiatCurrency: getCurrentFiatCurrency(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

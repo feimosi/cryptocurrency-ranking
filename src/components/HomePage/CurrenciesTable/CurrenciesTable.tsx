@@ -2,21 +2,21 @@ import * as React from 'react';
 
 import PureBaseComponent from 'common/PureBaseComponent';
 import { Cryptocurrency } from 'types/cryptocurrency.type';
-import { FlatCurrency } from 'types/flatCurrency.type';
+import { FiatCurrency } from 'types/fiatCurrency.type';
 
 import CurrenciesTableRow from './CurrenciesTableRow';
 import './CurrenciesTable.css';
 
 interface Props {
   currencies: Cryptocurrency[];
-  flatCurrency: FlatCurrency;
+  fiatCurrency: FiatCurrency;
 }
 
 export default class CurrenciesTable extends PureBaseComponent<Props> {
   static defaultProps = {};
 
   render() {
-    const { currencies, flatCurrency } = this.props;
+    const { currencies, fiatCurrency } = this.props;
 
     return (
       <table className="CurrenciesTable">
@@ -41,7 +41,7 @@ export default class CurrenciesTable extends PureBaseComponent<Props> {
                 key={ currency.id }
                 index={ index }
                 currency={ currency }
-                flatCurrency={ flatCurrency }
+                fiatCurrency={ fiatCurrency }
               />,
           ) }
         </tbody>

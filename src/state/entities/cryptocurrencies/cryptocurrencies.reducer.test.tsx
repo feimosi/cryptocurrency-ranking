@@ -1,7 +1,7 @@
 import { getType, ActionType } from 'typesafe-actions';
 
 import { Cryptocurrency } from 'types/cryptocurrency.type';
-import { FlatCurrency } from 'types/flatCurrency.type';
+import { FiatCurrency } from 'types/fiatCurrency.type';
 import * as actions from './cryptocurrencies.actions';
 import globalReducer, { StateType } from './cryptocurrencies.reducer';
 import { getResponseListingsUSD } from './cryptocurrencies.mockedResponses';
@@ -44,7 +44,7 @@ describe('Cryptocurrencies reducer', () => {
 
       const action: ActionType<typeof actions.fetchTopCryptocurrencies> = {
         type: getType(actions.fetchTopCryptocurrencies),
-        payload: { flatCurrency: FlatCurrency.USD },
+        payload: { fiatCurrency: FiatCurrency.USD },
       };
       const newState = globalReducer(initialState, action);
 

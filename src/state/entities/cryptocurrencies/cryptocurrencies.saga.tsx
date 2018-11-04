@@ -2,24 +2,24 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { getType, ActionType } from 'typesafe-actions';
 
 import { Cryptocurrency } from 'types/cryptocurrency.type';
-import { FlatCurrency } from 'types/flatCurrency.type';
+import { FiatCurrency } from 'types/fiatCurrency.type';
 import { get } from 'utils/api';
 
 import * as actions from './cryptocurrencies.actions';
 import * as responseListings from './cryptocurrencies.mockedResponses';
 
-function getCryptocurrencyListings(flatCurrency: FlatCurrency): Cryptocurrency[] {
-  return flatCurrency === FlatCurrency.CNY ?
+function getCryptocurrencyListings(fiatCurrency: FiatCurrency): Cryptocurrency[] {
+  return fiatCurrency === FiatCurrency.CNY ?
     responseListings.getResponseListingsCNY() :
-    flatCurrency === FlatCurrency.EUR ?
+    fiatCurrency === FiatCurrency.EUR ?
       responseListings.getResponseListingsEUR() :
-      flatCurrency === FlatCurrency.USD ?
+      fiatCurrency === FiatCurrency.USD ?
         responseListings.getResponseListingsUSD() : [];
 }
 
 function* fetchTopCryptocurrencies(action: ActionType<typeof actions.fetchTopCryptocurrencies>) {
   try {
-    const { flatCurrency } = action.payload;
+    const { fiatCurrency } = action.payload;
 
     // NOTE: Coinbase API requires to proxy requests through our own backend
     // For now the responses have been mocked
@@ -28,7 +28,7 @@ function* fetchTopCryptocurrencies(action: ActionType<typeof actions.fetchTopCry
 
     const response: { data: Cryptocurrency[] } = yield call(async () =>
       new Promise(resolve =>
-        setTimeout(() => resolve({ data: getCryptocurrencyListings(flatCurrency) }), 300),
+        setTimeout(() => resolve({ data: getCryptocurrencyListings(fiatCurrency) }), 300),
       ));
 
     yield put(actions.fetchTopCryptocurrenciesSuccess(response.data));
@@ -43,11 +43,11 @@ export function* watchFetchTopCryptocurrencies() {
 
 function* fetchCryptocurrency(action: ActionType<typeof actions.fetchCryptocurrency>) {
   try {
-    const { currencyId, flatCurrency } = action.payload;
+    const { currencyId, fiatCurrency } = action.payload;
 
     const response: { data: Cryptocurrency[] } = yield call(async () =>
       new Promise(resolve =>
-        setTimeout(() => resolve({ data: getCryptocurrencyListings(flatCurrency) }), 300),
+        setTimeout(() => resolve({ data: getCryptocurrencyListings(fiatCurrency) }), 300),
       ));
 
     yield put(actions.fetchTopCryptocurrenciesSuccess(response.data));

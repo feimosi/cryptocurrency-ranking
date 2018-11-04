@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import * as _ from 'lodash';
 
-import { getCurrentFlatCurrency } from 'state/global/global.selectors';
+import { getCurrentFiatCurrency } from 'state/global/global.selectors';
 import { RootState } from 'state/reducers';
 
 const getReduxCryptocurrencies = (state: RootState) =>
@@ -11,11 +11,11 @@ const getReduxTopCryptocurrencies = (state: RootState) =>
   state.entities.cryptocurrencies.top.items;
 
 export const getTopCryptocurrenciesSelector = createSelector(
-  [getReduxCryptocurrencies, getReduxTopCryptocurrencies, getCurrentFlatCurrency],
-  (cryptocurrencies, topCryptocurrencies, flatCurrency) =>
+  [getReduxCryptocurrencies, getReduxTopCryptocurrencies, getCurrentFiatCurrency],
+  (cryptocurrencies, topCryptocurrencies, fiatCurrency) =>
     topCryptocurrencies
       .map(currencyId => cryptocurrencies[currencyId])
-      .filter(currency => Boolean(currency.quote[flatCurrency])),
+      .filter(currency => Boolean(currency.quote[fiatCurrency])),
 );
 
 /* tslint:disable no-any */

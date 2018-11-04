@@ -1,4 +1,4 @@
-import { FlatCurrency } from './flatCurrency.type';
+import { FiatCurrency } from './fiatCurrency.type';
 
 export class Cryptocurrency {
   id: number;
@@ -13,7 +13,7 @@ export class Cryptocurrency {
   cmcRank: number;
   lastUpdated: Date;
   quote: {
-    [prop in FlatCurrency]: {
+    [prop in FiatCurrency]: {
       price: number;
       volume24h: number;
       percentChange1h: number;

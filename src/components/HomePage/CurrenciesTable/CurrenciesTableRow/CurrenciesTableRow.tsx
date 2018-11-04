@@ -3,14 +3,14 @@ import { withRouter, RouteComponentProps } from 'react-router';
 
 import PureBaseComponent from 'common/PureBaseComponent';
 import { Cryptocurrency } from 'types/cryptocurrency.type';
-import { FlatCurrency } from 'types/flatCurrency.type';
+import { FiatCurrency } from 'types/fiatCurrency.type';
 
 import './CurrenciesTableRow.css';
 
 interface OwnProps {
   index: number;
   currency: Cryptocurrency;
-  flatCurrency: FlatCurrency;
+  fiatCurrency: FiatCurrency;
 }
 
 type Props = OwnProps & RouteComponentProps;
@@ -24,14 +24,14 @@ export class CurrenciesTableRow extends PureBaseComponent<Props> {
   }
 
   render() {
-    const { index, currency, flatCurrency } = this.props;
+    const { index, currency, fiatCurrency } = this.props;
 
-    const price = currency.quote[flatCurrency].price
+    const price = currency.quote[fiatCurrency].price
       .toFixed(4)
       .toString()
       .replace(/0+$/, '');
 
-    const percentChange24h = currency.quote[flatCurrency].percentChange24h
+    const percentChange24h = currency.quote[fiatCurrency].percentChange24h
       .toFixed(2);
 
     return (
@@ -53,7 +53,7 @@ export class CurrenciesTableRow extends PureBaseComponent<Props> {
 
         <td>
           <div className="CurrenciesTableRow__price">
-            { price } { flatCurrency }
+            { price } { fiatCurrency }
           </div>
         </td>
 

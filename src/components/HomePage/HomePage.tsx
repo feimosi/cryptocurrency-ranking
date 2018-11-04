@@ -8,17 +8,17 @@ import Button from 'common/Button';
 import Spinner from 'common/Spinner';
 import * as cryptocurrenciesActions from 'state/entities/cryptocurrencies/cryptocurrencies.actions';
 import { getTopCryptocurrenciesSelector } from 'state/entities/cryptocurrencies/cryptocurrencies.selectors';
-import { getCurrentFlatCurrency } from 'state/global/global.selectors';
+import { getCurrentFiatCurrency } from 'state/global/global.selectors';
 import { RootState } from 'state/reducers';
 import { Cryptocurrency } from 'types/cryptocurrency.type';
-import { FlatCurrency } from 'types/flatCurrency.type';
+import { FiatCurrency } from 'types/fiatCurrency.type';
 
 import CurrenciesTable from './CurrenciesTable';
 import './HomePage.css';
 
 interface StateProps {
   cryptocurrencies: Cryptocurrency[];
-  currentFlatCurrency: FlatCurrency;
+  currentFiatCurrency: FiatCurrency;
   isLoading: boolean;
   isRefreshing: boolean;
 }
@@ -35,15 +35,15 @@ export class HomePage extends BaseComponent<Props> {
   }
 
   refreshData = () => {
-    const { actions, currentFlatCurrency } = this.props;
+    const { actions, currentFiatCurrency } = this.props;
 
-    actions.fetchTopCryptocurrencies(currentFlatCurrency);
+    actions.fetchTopCryptocurrencies(currentFiatCurrency);
   }
 
   render() {
     const {
       cryptocurrencies,
-      currentFlatCurrency,
+      currentFiatCurrency,
       isLoading,
       isRefreshing,
    } = this.props;
@@ -66,7 +66,7 @@ export class HomePage extends BaseComponent<Props> {
         <div className="HomePage__mainContent">
           <CurrenciesTable
             currencies={ cryptocurrencies }
-            flatCurrency={ currentFlatCurrency }
+            fiatCurrency={ currentFiatCurrency }
           />
           { isLoading && <Spinner
             color="#1200FF"
@@ -80,7 +80,7 @@ export class HomePage extends BaseComponent<Props> {
 
 const mapStateToProps = (state: RootState): StateProps => ({
   cryptocurrencies: getTopCryptocurrenciesSelector(state),
-  currentFlatCurrency: getCurrentFlatCurrency(state),
+  currentFiatCurrency: getCurrentFiatCurrency(state),
   isLoading: state.entities.cryptocurrencies.top.isLoading,
   isRefreshing: state.entities.cryptocurrencies.top.isRefreshing,
 });
