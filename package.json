@@ -1,7 +1,8 @@
 {
-  "name": "povio",
-  "version": "0.1.0",
+  "name": "cryptocurrency-ranking",
+  "version": "1.0.0",
   "private": true,
+  "homepage": "https://feimosi.github.io/cryptocurrency-ranking",
   "scripts": {
     "start": "cross-env NODE_PATH=src/ react-app-rewired start",
     "build": "cross-env NODE_PATH=src/ react-app-rewired build",
@@ -9,10 +10,11 @@
     "build-staging": "cross-env NODE_PATH=src/ REACT_APP_NODE_ENV=staging react-app-rewired build",
     "build-production": "cross-env NODE_PATH=src/ REACT_APP_NODE_ENV=production react-app-rewired build",
     "test": "cross-env NODE_PATH=src/ react-app-rewired test --env=jsdom",
-    "eject": "react-scripts eject",
     "tsc": "tsc --watch --noEmit --project .",
     "lint": "tslint --project .",
-    "generator": "plop"
+    "generator": "plop",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "husky": {
     "hooks": {
@@ -59,6 +61,7 @@
     "@types/webpack-env": "^1.13.6",
     "caniuse-lite": "^1.0.30000903",
     "cross-env": "^5.2.0",
+    "gh-pages": "^2.0.1",
     "husky": "^1.1.2",
     "inquirer-fuzzy-path": "^1.0.0",
     "plop": "^2.1.0",
