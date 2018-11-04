@@ -25,7 +25,7 @@ module.exports = {
 
     return config;
   },
-  jest: function(config) {
+  jest(config) {
     return rewireTypescriptJest(config);
   }
 };

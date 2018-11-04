@@ -82,4 +82,27 @@ describe('Cryptocurrencies reducer', () => {
       expect(newState).toEqual(expectedState);
     });
   });
+
+  describe('Fetch cryptocurrency action ', () => {
+    it('should fetch an item successfully', () => {
+      const initialState: StateType = {
+        ...defaultState,
+        items: {},
+      };
+      const expectedState: StateType = {
+        ...defaultState,
+        items: {
+          [exampleCryptocurrency1.id]: exampleCryptocurrency1,
+        },
+      };
+
+      const action: ActionType<typeof actions.fetchCryptocurrencySuccess> = {
+        type: getType(actions.fetchCryptocurrencySuccess),
+        payload: { cryptocurrency: exampleCryptocurrency1 },
+      };
+      const newState = globalReducer(initialState, action);
+
+      expect(newState).toEqual(expectedState);
+    });
+  });
 });
