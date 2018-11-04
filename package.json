@@ -84,7 +84,7 @@
     "tslint-microsoft-contrib": "^5.2.1",
     "tslint-react": "^3.6.0",
     "typescript": "^3.1.5",
-    "why-did-you-update": "^0.1.1"
+    "why-did-you-update": "^0.2.0"
   },
   "browserslist": {
     "development": [
