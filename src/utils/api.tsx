@@ -1,5 +1,5 @@
 const API_URL = 'https://pro-api.coinmarketcap.com/v1';
-const API_KEY = '08db62f1-1996-4742-8b11-e8e481ade597';
+const API_KEY = '08db62f1-1996-4742-8b11-e8e481ade597'; // TODO: Move to a local config file
 
 /* tslint:disable no-any */
 function handleGeneralError(response: any, error: any) {
