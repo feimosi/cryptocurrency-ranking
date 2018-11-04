@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "09ad22619bd538b887d4",
+    "revision": "5ac7c0b6e4ca0fe3d3a1",
     "url": "/cryptocurrency-ranking/static/css/main.747615bc.chunk.css"
   },
   {
-    "revision": "09ad22619bd538b887d4",
-    "url": "/cryptocurrency-ranking/static/js/main.09ad2261.chunk.js"
+    "revision": "5ac7c0b6e4ca0fe3d3a1",
+    "url": "/cryptocurrency-ranking/static/js/main.5ac7c0b6.chunk.js"
   },
   {
-    "revision": "a76b7312a9d11ac8352d",
-    "url": "/cryptocurrency-ranking/static/css/homePage.54e1f578.chunk.css"
+    "revision": "a0bc3f9790bd41e80997",
+    "url": "/cryptocurrency-ranking/static/css/homePage.f1af5bd1.chunk.css"
   },
   {
-    "revision": "a76b7312a9d11ac8352d",
-    "url": "/cryptocurrency-ranking/static/js/homePage.a76b7312.chunk.js"
+    "revision": "a0bc3f9790bd41e80997",
+    "url": "/cryptocurrency-ranking/static/js/homePage.a0bc3f97.chunk.js"
   },
   {
     "revision": "08998b07d83325a3f852",
@@ -28,11 +28,11 @@ self.__precacheManifest = [
     "url": "/cryptocurrency-ranking/static/js/3.5ecf1495.chunk.js"
   },
   {
-    "revision": "aae01be01d3c689f48f0",
-    "url": "/cryptocurrency-ranking/static/js/runtime~main.aae01be0.js"
+    "revision": "033183185c65d7b3a415",
+    "url": "/cryptocurrency-ranking/static/js/runtime~main.03318318.js"
   },
   {
-    "revision": "4d411ca619dcac24fdc8dee6df35d042",
+    "revision": "21b656e94735657c8078c776cbc89c15",
     "url": "/cryptocurrency-ranking/index.html"
   }
 ];
